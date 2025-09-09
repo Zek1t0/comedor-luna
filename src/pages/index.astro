@@ -1,16 +1,43 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Features from '../components/Features.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Menu from '../components/Menu.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/react/WhatsAppButton';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Comedor Luna – Sabores que cuentan historias familiares">
+  <link rel="stylesheet" href="/src/styles/global.css" />
+
+  <a id="top"></a>
+  <NavBar />
+
+  <header class="hero">
+    <div class="wrap container-max" data-animate>
+      <h1 class="font-serif text-[clamp(2.2rem,4.5vw,4rem)] leading-tight text-white">Sabores que cuentan historias familiares</h1>
+      <p class="max-w-[750px] mx-auto opacity-95 text-white mt-2">Desde 1962, sirviendo los sabores auténticos de la cocina casera, transmitidos de generación en generación con el mismo amor de siempre.</p>
+      <div class="flex flex-wrap gap-3 justify-center mt-4">
+        <a class="btn btn-primary" href="#menu">Ver Nuestro Menú</a>
+        <a class="btn btn-ghost" href="#historia">Nuestra Historia</a>
+      </div>
+    </div>
+  </header>
+
+  <Features />
+  <Testimonials />
+  <Menu />
+
+  <section id="historia" class="section">
+    <div class="container-max">
+      <h2 class="section-title">Nuestra Historia</h2>
+      <p class="muted-center">Desde 1962, Comedor Luna es un punto de encuentro para familias y amigos en Sáenz Peña. Nacimos como una mesa larga en casa y crecimos conservando la sencillez y el sabor casero.</p>
+    </div>
+  </section>
+
+  <Contact />
+  <Footer />
+  <WhatsAppButton client:visible />
+</BaseLayout>

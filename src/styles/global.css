@@ -1,0 +1,50 @@
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* === Tema (Tailwind v4) === */
+@theme {
+  --font-sans: Inter, system-ui, sans-serif;
+
+  /* colores personalizados -> habilitan bg-primary, text-muted, etc */
+  --color-primary: #f06a00;
+  --color-primary-600: #d65f00;
+  --color-cream: #fffaf2;
+  --color-text: #1f1a17;
+  --color-muted: #6b625d;
+  --color-accent: #f7e3cf;
+  --color-line: #eadfd8;
+  --color-footer: #2f241c;
+
+  /* radios opcionales si pensás usarlos como utilidades: rounded-xl2 */
+  --radius-xl2: 16px;
+}
+
+/* variables extra opcionales (si querés seguir usando var() arbitrario) */
+:root{
+  --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.12);
+  --hero-image: url('/images/hero.jpg');
+}
+
+html { scroll-behavior: smooth; }
+body  { @apply font-sans bg-cream text-text; }
+
+/******** utilidades ********/
+.container-max { @apply max-w-[1120px] w-[92%] mx-auto; }
+.btn         { @apply inline-flex items-center gap-2 rounded-full font-semibold no-underline border border-transparent px-4 py-2; }
+.btn-primary { @apply bg-primary text-white hover:bg-primary-600; }  /* ← ahora sí existe */
+.btn-ghost   { @apply bg-white border border-black/10; }
+.muted       { @apply text-muted; }
+.shadow-mdx  { box-shadow: var(--shadow-md); }
+.shadow-lgx  { box-shadow: var(--shadow-lg); }
+
+/******** secciones ********/
+.nav-blur     { @apply sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur; }
+.hero         { @apply grid place-items-center min-h-[86vh] relative; }
+.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), var(--hero-image); background-size:cover; background-position:center; }
+.hero .wrap   { @apply relative text-white text-center py-[5vh]; }
+.features     { @apply bg-[#f8efe6] py-16 border-y border-line; }
+.section      { @apply py-20; }
+.section-title{ @apply text-center font-serif text-3xl md:text-4xl mb-7; }
+.muted-center { @apply text-center max-w-[70ch] mx-auto mb-9 text-muted; }
+.footer       { @apply bg-footer text-[#efe7df] pt-14 pb-8 mt-16; }
