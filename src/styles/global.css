@@ -29,15 +29,15 @@
 html { scroll-behavior: smooth; }
 
 /* Helpers reutilizables */
-.container-max { @apply max-w-[1120px] w-[92%] mx-auto; }
+.container-max { @apply container mx-auto px-4 max-w-6xl; } 
 
 .btn         { @apply inline-flex items-center gap-2 rounded-lg font-semibold no-underline border border-transparent px-4 py-2; }
 .btn-primary { @apply bg-primary text-white hover:bg-primary-600; }
 .btn-ghost   { @apply bg-white border border-black/10; }
 
 .muted       { @apply text-muted; }
-.section     { @apply py-20; }
-.section-title{ @apply text-center font-serif text-3xl md:text-4xl mb-7; }
+.section     { @apply py-24; }
+.section-title{ @apply text-center font-serif text-3xl md:text-4xl mb-4; }
 .muted-center{ @apply text-center max-w-[70ch] mx-auto mb-9 text-muted; }
 
 .shadow-mdx  { box-shadow: var(--shadow-md); }
