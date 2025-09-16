@@ -31,7 +31,7 @@ html { scroll-behavior: smooth; }
 /* Helpers reutilizables */
 .container-max { @apply max-w-[1120px] w-[92%] mx-auto; }
 
-.btn         { @apply inline-flex items-center gap-2 rounded-full font-semibold no-underline border border-transparent px-4 py-2; }
+.btn         { @apply inline-flex items-center gap-2 rounded-lg font-semibold no-underline border border-transparent px-4 py-2; }
 .btn-primary { @apply bg-primary text-white hover:bg-primary-600; }
 .btn-ghost   { @apply bg-white border border-black/10; }
 

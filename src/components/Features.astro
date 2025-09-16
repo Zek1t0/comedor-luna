@@ -1,25 +1,56 @@
-<section class="py-16 bg-[#f8efe6] border-y border-line" aria-labelledby="caracteristicas">
+<section class="py-24 bg-[#f8efe6] border-y border-line" aria-labelledby="caracteristicas">
   <div class="container-max grid md:grid-cols-3 gap-7">
+
+    <!-- Recetas Familiares — tenedor + cuchillo (tu SVG) -->
     <article class="grid place-items-center text-center gap-2 p-4">
-      <div class="w-14 h-14 rounded-full bg-[var(--accent)] grid place-items-center shadow-inner">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f06a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M8 3v7M6 3v7M12 3v7m0 0 6-7m-6 7 6 7"/></svg>
+      <div class="w-16 h-16 rounded-full bg-accent/70 grid place-items-center shadow-inner">
+        <img
+          src="/icons/fork-and-knife.svg"
+          alt="Tenedor y cuchillo"
+          class="w-8 h-8"
+          width="24" height="24"
+          loading="lazy" decoding="async"
+        />
       </div>
-      <h3 class="font-bold">Recetas Familiares</h3>
-      <p class="muted max-w-[34ch]">Sabores auténticos transmitidos de generación en generación.</p>
+      <h3 class="text-xl font-serif">Recetas Familiares</h3>
+      <p class="muted max-w-[34ch]">
+        Sabores auténticos transmitidos de generación en generación, manteniendo viva la tradición.
+      </p>
     </article>
+
+    <!-- Comida Casera — tazón (tu SVG) -->
     <article class="grid place-items-center text-center gap-2 p-4">
-      <div class="w-14 h-14 rounded-full bg-[var(--accent)] grid place-items-center shadow-inner">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f06a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M1 10h22M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+      <div class="w-16 h-16 rounded-full bg-accent/70 grid place-items-center shadow-inner">
+        <img
+          src="/icons/home-made-minimalist.svg"
+          alt="Tazón humeante"
+          class="w-8 h-8"
+          width="24" height="24"
+          loading="lazy" decoding="async"
+        />
       </div>
-      <h3 class="font-bold">Comida Casera</h3>
-      <p class="muted max-w-[34ch]">Platos preparados al momento con ingredientes frescos.</p>
+      <h3 class="text-xl font-serif">Comida Casera</h3>
+      <p class="muted max-w-[34ch]">
+        Cada plato preparado al momento con ingredientes frescos y el cariño de nuestra cocina.
+      </p>
     </article>
+
+    <!-- Servicio Puntual — reloj (SVG inline) -->
     <article class="grid place-items-center text-center gap-2 p-4">
-      <div class="w-14 h-14 rounded-full bg-[var(--accent)] grid place-items-center shadow-inner">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f06a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <div class="w-16 h-16 rounded-full bg-accent/70 grid place-items-center shadow-inner">
+        <svg viewBox="0 0 24 24" width="24" height="24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             class="w-8 h-8 text-primary">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 3" />
+        </svg>
       </div>
-      <h3 class="font-bold">Servicio Puntual</h3>
-      <p class="muted max-w-[34ch]">Siempre a tiempo, con la calidez que merecés.</p>
+      <h3 class="text-xl font-serif">Servicio Puntual</h3>
+      <p class="muted max-w-[34ch]">
+        Disfrutá tu comida en el momento preciso, con la calidez que merecés.
+      </p>
     </article>
+
   </div>
 </section>
