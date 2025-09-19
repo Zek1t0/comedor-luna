@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+---
+
+<BaseLayout title="Souvenirs – Comedor Luna">
+  <NavBar />
+  
+  <header class="section">
+    <div class="container-max text-center">
+      <h1 class="section-title">Souvenirs & Complementos</h1>
+      <p class="muted-center">Llevate un pedacito de Comedor Luna a casa.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container-max grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
+        <img src="/img/dulce-leche-casero.jpg" alt="Dulce de leche casero" class="w-full h-44 object-cover" />
+        <div class="p-5">
+          <h2 class="font-semibold">Dulce de Leche Casero</h2>
+          <p class="muted mt-1">Frasco 450g · $2500</p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
+        <img src="/img/pepas-caseras.jpg" alt="Pepas caseras" class="w-full h-44 object-cover" />
+        <div class="p-5">
+          <h2 class="font-semibold">Pepas Caseras</h2>
+          <p class="muted mt-1">Bandeja · $1800</p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
+        <img src="/img/salsa-tomate.jpg" alt="Salsa de tomate" class="w-full h-44 object-cover" />
+        <div class="p-5">
+          <h2 class="font-semibold">Salsa de Tomate Artesanal</h2>
+          <p class="muted mt-1">Frasco 500ml · $1900</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

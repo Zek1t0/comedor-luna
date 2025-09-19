@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+---
+
+<BaseLayout title="Menú – Comedor Luna">
+  <NavBar />
+  
+  <header class="section">
+    <div class="container-max text-center">
+      <h1 class="section-title">Nuestro Menú</h1>
+      <p class="muted-center">Todos los días, platos caseros preparados al momento.</p>
+    </div>
+  </header>
+
+  <section class="section" id="menu">
+    <div class="container-max grid md:grid-cols-[.95fr_1.05fr] gap-9 items-start">
+      <!-- Foto -->
+      <figure class="rounded-2xl overflow-hidden shadow-mdx">
+        <img src="/img/milanesa-ensalada.jpg" alt="Milanesa con ensalada" class="w-full h-auto object-cover" />
+      </figure>
+
+      <!-- Listas -->
+      <div class="grid gap-7">
+        <div>
+          <h2 class="font-serif text-2xl mb-2">Platos Principales</h2>
+          <ul class="border-t border-line">
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Guiso de Lentejas</span><span class="font-semibold">$2500</span></li>
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Milanesa con Puré</span><span class="font-semibold">$3000</span></li>
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Tallarines Caseros</span><span class="font-semibold">$2800</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl mb-2">Especialidades</h2>
+          <ul class="border-t border-line">
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Locro Tradicional</span><span class="font-semibold">$3200</span></li>
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Empanadas (docena)</span><span class="font-semibold">$4000</span></li>
+            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Tamales (unidad)</span><span class="font-semibold">$800</span></li>
+          </ul>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h2 class="font-serif text-2xl mb-2">Bebidas</h2>
+            <ul class="border-t border-line">
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Vino de la casa (copa)</span><span class="font-semibold">$800</span></li>
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Cerveza artesanal</span><span class="font-semibold">$1000</span></li>
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Limonada casera</span><span class="font-semibold">$600</span></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-serif text-2xl mb-2">Entradas</h2>
+            <ul class="border-t border-line">
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Picada criolla</span><span class="font-semibold">$2200</span></li>
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Empanadas (3 unidades)</span><span class="font-semibold">$1500</span></li>
+              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Provoleta</span><span class="font-semibold">$1800</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <a class="btn btn-primary" href="/#contacto">Consultar por más platos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

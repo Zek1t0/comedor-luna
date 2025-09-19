@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+---
+
+<BaseLayout title="Nuestra Historia – Comedor Luna">
+  <NavBar />
+
+  <header class="section">
+    <div class="container-max text-center">
+      <h1 class="section-title">Nuestra Historia</h1>
+      <p class="muted-center">Desde 1962, un punto de encuentro para familias y amigos.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container-max grid gap-8">
+      <article class="rounded-2xl bg-white p-6 shadow-mdx border border-line">
+        <h2 class="font-serif text-xl mb-2">1962 · Los comienzos</h2>
+        <p>Todo empezó como una gran mesa en casa, con recetas transmitidas de generación en generación…</p>
+      </article>
+      <article class="rounded-2xl bg-white p-6 shadow-mdx border border-line">
+        <h2 class="font-serif text-xl mb-2">1980–2000 · Crecimiento</h2>
+        <p>Nos mudamos a un local más amplio y mantuvimos la esencia de cocina casera y ambiente familiar.</p>
+      </article>
+      <article class="rounded-2xl bg-white p-6 shadow-mdx border border-line">
+        <h2 class="font-serif text-xl mb-2">Hoy</h2>
+        <p>Seguimos sirviendo los mismos sabores con el amor de siempre, en el corazón de Sáenz Peña.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
