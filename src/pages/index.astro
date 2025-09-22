@@ -6,7 +6,7 @@ import Testimonials from '../components/Testimonials.astro';
 import Menu from '../components/Menu.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-import WhatsAppButton from '../components/react/WhatsappButton.tsx';
+import { WhatsAppButton } from '../components/react/WhatsappButton.tsx';
 ---
 <BaseLayout title="Comedor Luna – Sabores que cuentan historias familiares">
   <a id="top"></a>
@@ -28,7 +28,7 @@ import WhatsAppButton from '../components/react/WhatsappButton.tsx';
     <div class="flex flex-wrap gap-3 justify-center mt-6">
       <a class="btn btn-primary shadow-lgx" href="#menu">Ver Nuestro Menú</a>
       <a
-        class="btn border border-white/30 text-white hover:bg-white/10"
+        class="btn !border-white/30 text-white hover:bg-white/10"
         href="#historia"
       >
         Nuestra Historia

@@ -1,14 +1,37 @@
-export default function WhatsAppButton() {
+// whatsapp-button.tsx  (o WhatsappButton.tsx)
+export function WhatsAppButton() {
   return (
     <a
-      className="fixed right-5 bottom-5 z-50 w-14 h-14 rounded-full bg-[#25d366] grid place-items-center shadow-[0_16px_40px_rgba(0,0,0,.12)]"
       href="https://wa.me/5493644636144"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       aria-label="Chatear por WhatsApp"
+      className="
+        fixed bottom-5 right-5 z-50
+        w-14 h-14 rounded-full grid place-items-center
+        bg-[#25D366] shadow-[0_12px_28px_rgba(0,0,0,0.18)]
+        transition-transform hover:scale-105 active:scale-95
+        floating
+      "
     >
-      <svg viewBox="0 0 32 32" aria-hidden="true" width="26" height="26" fill="#fff">
-        <path d="M19.11 17.56c-.27-.14-1.6-.79-1.84-.88-.25-.09-.43-.14-.62.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.6.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.49.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.49-.85-2.04-.22-.53-.44-.46-.62-.46h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3 0 1.35.98 2.66 1.12 2.84.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.2 1.24.17 1.7.1.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.02 3C9.93 3 5 7.93 5 14.02c0 2.44.77 4.7 2.1 6.54L5 29l8.63-2.27c1.77 1 3.82 1.57 5.99 1.57 6.09 0 11.02-4.93 11.02-11.02S22.11 3 16.02 3zm0 20.1c-1.82 0-3.51-.53-4.93-1.44l-.35-.22-5.12 1.35 1.36-4.99-.23-.36a9.06 9.06 0 0 1-1.42-4.86c0-5 4.07-9.06 9.09-9.06 5.01 0 9.08 4.06 9.08 9.06 0 5.02-4.07 9.1-9.08 9.1z"/>
+      {/* Burbuja con trazo blanco, sin fill (como el botón blanco) */}
+      <svg
+        viewBox="-0.5 0 24 24"
+        width="22"
+        height="60"
+        aria-hidden="true"
+        className="pointer-events-none w-7"
+      >
+        <g transform="scale(1,1.1)">
+        <path
+          d="M21 10c0 4.418-4.03 8-9 8-1.27 0-2.5-.22-3.6-.62L3 19l1.33-4.03A7.9 7.9 0 0 1 3 10c0-4.418 4.03-8 9-8s9 3.582 9 8Z"
+          fill="none"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          />
+          </g>
       </svg>
     </a>
   );
