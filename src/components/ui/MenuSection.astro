@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  columns?: 1 | 2 | 3;     // default 2
+}
+const { title, subtitle = "", columns = 2 } = Astro.props;
+
+const gridCols =
+  columns === 3 ? "md:grid-cols-3" :
+  columns === 1 ? "md:grid-cols-1" :
+  "md:grid-cols-2";
+---
+
+<section class="mb-16">
+  <div class="text-center mb-10">
+    <h2 class="section-title mb-2">{title}</h2>
+    {subtitle && <p class="muted-center">{subtitle}</p>}
+  </div>
+
+  <div class={`grid gap-8 ${gridCols}`}>
+    <slot />
+  </div>
+</section>

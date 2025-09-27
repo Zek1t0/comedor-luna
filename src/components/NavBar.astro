@@ -6,12 +6,12 @@ const link = (href: string) =>
 
 <nav class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
   <div class="container-max flex items-center justify-between py-3">
-    <a href="#top" class="font-serif text-2xl">Comedor Luna</a>
+    <a href="/" class="font-serif text-2xl">Comedor Luna</a>
     <div class="flex items-center gap-5">
-      <a href="#menu" class="opacity-85 hover:opacity-100">Menú</a>
-      <a href="#historia" class="opacity-85 hover:opacity-100">Nuestra Historia</a>
-      <a href="#contacto" class="opacity-85 hover:opacity-100">Contacto</a>
-      <a href="#complementos" class="btn btn-primary">Complementos</a>
+      <a class={link('/menu')} href="/menu">Menú</a>
+      <a class={link('/historia')} href="/historia">Nosotros</a>
+      <a class={link('/souvenirs')} href="/souvenirs">Souvenirs</a>
+      <a class="btn btn-primary" href="/#contacto">Contacto</a>
     </div>
   </div>
 </nav>

@@ -1,68 +1,100 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NavBar from "../components/NavBar.astro";
+import MenuSection from "../components/ui/MenuSection.astro";
+import MenuCard from "../components/ui/MenuCard.astro";
 ---
 
-<BaseLayout title="Menú – Comedor Luna">
+<BaseLayout title="Menú — Comedor Luna">
   <NavBar />
-  
-  <header class="section">
-    <div class="container-max text-center">
-      <h1 class="section-title">Nuestro Menú</h1>
-      <p class="muted-center">Todos los días, platos caseros preparados al momento.</p>
-    </div>
-  </header>
+  <main class="container-max py-12">
+    <MenuSection title="Entradas" subtitle="Para comenzar la experiencia gastronómica">
+      <MenuCard
+        name="Empanadas"
+        price={2800}
+        description="Tradicionales empanadas al horno o fritas con masa casera de carne / jamón y queso / pollo / choclo."
+        tags="Especialidad, 6 unidades, 12 unidades" />
 
-  <section class="section" id="menu">
-    <div class="container-max grid md:grid-cols-[.95fr_1.05fr] gap-9 items-start">
-      <!-- Foto -->
-      <figure class="rounded-2xl overflow-hidden shadow-mdx">
-        <img src="/img/milanesa-ensalada.jpg" alt="Milanesa con ensalada" class="w-full h-auto object-cover" />
-      </figure>
+      <MenuCard
+        name="Tabla de Fiambres"
+        price={4200}
+        description="Selección de paleta, salame, queso y aceitunas."
+        tags="Para compartir, 2 personas" />
+    </MenuSection>
 
-      <!-- Listas -->
-      <div class="grid gap-7">
-        <div>
-          <h2 class="font-serif text-2xl mb-2">Platos Principales</h2>
-          <ul class="border-t border-line">
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Guiso de Lentejas</span><span class="font-semibold">$2500</span></li>
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Milanesa con Puré</span><span class="font-semibold">$3000</span></li>
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Tallarines Caseros</span><span class="font-semibold">$2800</span></li>
-          </ul>
-        </div>
+    <hr class="border-line my-16" />
 
-        <div>
-          <h2 class="font-serif text-2xl mb-2">Especialidades</h2>
-          <ul class="border-t border-line">
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Locro Tradicional</span><span class="font-semibold">$3200</span></li>
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Empanadas (docena)</span><span class="font-semibold">$4000</span></li>
-            <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Tamales (unidad)</span><span class="font-semibold">$800</span></li>
-          </ul>
-        </div>
+    <MenuSection title="Platos Principales" subtitle="Lo más pedido de nuestra cocina">
+      <MenuCard
+        name="Milanesas"
+        price={3000}
+        description="De ternera o pollo, napolitana opcional."
+        tags="Clásico" />
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h2 class="font-serif text-2xl mb-2">Bebidas</h2>
-            <ul class="border-t border-line">
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Vino de la casa (copa)</span><span class="font-semibold">$800</span></li>
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Cerveza artesanal</span><span class="font-semibold">$1000</span></li>
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Limonada casera</span><span class="font-semibold">$600</span></li>
-            </ul>
-          </div>
-          <div>
-            <h2 class="font-serif text-2xl mb-2">Entradas</h2>
-            <ul class="border-t border-line">
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Picada criolla</span><span class="font-semibold">$2200</span></li>
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Empanadas (3 unidades)</span><span class="font-semibold">$1500</span></li>
-              <li class="grid grid-cols-[1fr_auto] gap-4 py-3 border-b border-dashed border-line"><span>Provoleta</span><span class="font-semibold">$1800</span></li>
-            </ul>
-          </div>
-        </div>
+      <MenuCard
+        name="Pastas Caseras"
+        price={2800}
+        description="Tallarines, ñoquis o ravioles. Salsa a elección: tuco, bolognesa, crema o manteca y salvia."
+        tags="Porción abundante" />
 
-        <div>
-          <a class="btn btn-primary" href="/#contacto">Consultar por más platos</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <MenuCard
+        name="Carne al Plato"
+        price={2500}
+        description="Vacio al horno, pollo, cerdo o chivito."
+        tags="Tradicional" />
+
+      <MenuCard
+        name="Sopa Puchero"
+        price={3200}
+        description="Caldo con carne y vegetales (papa, zanahoria, zapallo, etc...)" />
+    </MenuSection>
+
+    <hr class="border-line my-16" />
+
+    <MenuSection title="Acompañamientos" subtitle="Lo más pedido de nuestra cocina">
+      <MenuCard
+        name="Ensaladas"
+        price={3000}
+        description="A tu elección: cebolla, morrones, tomate, lechuga, zanahoria, remolacha, huevo duro, etc..."
+        tags="Clásico" />
+
+      <MenuCard
+        name="Puré de Papas"
+        price={2800}
+        description="Puré casero, hecho con papas naturales."
+        tags="Porción abundante" />
+    </MenuSection>
+
+    <hr class="border-line my-16" />
+
+    <MenuSection title="Postres" subtitle="El final dulce perfecto">
+      <MenuCard
+        name="Flan Casero"
+        price={2800}
+        description="Podes pedirlo con dulce de leche, helado o crema."
+        tags="Casero" />
+
+      <MenuCard
+        name="Alfajores de Maicena"
+        price={3200}
+        description="Rellenos con dulce de leche repostero."
+        tags="Artesanal, 3 unidades" />
+
+      <MenuCard
+        name="Helado Artesanal"
+        price={3200}
+        description="Sabores: dulce de leche, chocolate, frutilla, tramontana, crema americana."
+        tags="Artesanal" />
+    </MenuSection>
+
+    <hr class="border-line my-16" />
+
+    <MenuSection title="Bebidas" subtitle="Para acompañar cada momento" columns={3}>
+      <MenuCard name="Vinos" description="Trapiche, Catena Zapata, Norton, Luigi Bosca, Rutini, Zuccardi, etc..." price="$1.800 / $8.500" tags="Copa, Botella"/>
+      <MenuCard name="Cervezas" description="Quilmes, Andes Origen, Patagonia, Imperial, Schneider, etc..." price="$1.500 / $6.800" tags="Botella"/>
+      <MenuCard name="Gaseosas" description="Coca-Cola, Pepsi, Sprite, Fanta, Manaos, Paso de los Toros, etc..." price={1200} tags="Botella" />
+      <MenuCard name="Aguas saborizadas" description="Levité, Cunnington Fresh, Ser, Aquarius, Glaciar, etc..." price={2200} tags="Botella" />
+      <MenuCard name="Aguas minerales / Sodas" description="Villavicencio, Eco de los Andes, Sierra de los Padres, Glaciar, etc..." price={1800} tags="Botella" />
+    </MenuSection>
+  </main>
 </BaseLayout>
