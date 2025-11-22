@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Corre cuando hacés push a la rama main
   push:
-    branches: ['main']
+    branches: ['master']
 
   # Permite correr el workflow a mano desde la pestaña "Actions"
   workflow_dispatch:
