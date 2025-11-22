@@ -1,0 +1,69 @@
+# Workflow para deployear contenido estático (Astro/Vite) a GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Corre cuando hacés push a la rama main
+  push:
+    branches: ['main']
+
+  # Permite correr el workflow a mano desde la pestaña "Actions"
+  workflow_dispatch:
+
+# Permisos para que GitHub Pages pueda leer y deployear
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo un deploy a la vez
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # Un solo job de deploy
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # Instalamos pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # Node + cache para pnpm
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      # Instalamos deps con pnpm (usa tu pnpm-lock.yaml)
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Build de Astro (usa "pnpm build" de tu package.json)
+      - name: Build
+        run: pnpm run build
+
+      # Configurar GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Subir la carpeta dist (output de Astro/Vite)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './dist'
+
+      # Deployear a GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

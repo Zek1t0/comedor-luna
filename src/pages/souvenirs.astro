@@ -1,46 +1,263 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+// Teléfono para consultas por WhatsApp (ajustá si cambia)
+const WA = "5493644636144";
+
+type Item = {
+  name: string;
+  price: string;
+  desc: string;
+  tags?: string[];
+  image?: string; // opcional
+  emoji?: string; // fallback si no hay imagen
+};
+
+type Category = {
+  id: string;
+  title: string;
+  items: Item[];
+};
+
+const categories: Category[] = [
+  {
+    id: "mates-bombillas",
+    title: "Mates & Bombillas",
+    items: [
+      {
+        name: "Mate de Calabaza",
+        price: "$ 10.500",
+        desc: "Calabaza seleccionada, virola de aluminio. Curado y listo para usar.",
+        tags: ["Clásico", "Hecho a mano"],
+        image: "/img/souvenirs/mate-calabaza.jpg",
+        emoji: "🧉",
+      },
+      {
+        name: "Mate de Madera",
+        price: "$ 9.800",
+        desc: "Madera estacionada, interior curado. Incluye funda de fieltro.",
+        tags: ["Artesanal"],
+        image: "/img/souvenirs/mate-madera.jpg",
+        emoji: "🪵",
+      },
+      {
+        name: "Bombilla de Acero",
+        price: "$ 5.600",
+        desc: "Acero inoxidable 304 con filtro desmontable. Fácil limpieza.",
+        tags: ["Inox", "Filtro"],
+        image: "/img/souvenirs/bombilla-inox.jpg",
+        emoji: "🥄",
+      },
+    ],
+  },
+  {
+    id: "termos",
+    title: "Termos",
+    items: [
+      {
+        name: "Termo 1 L Inox",
+        price: "$ 28.900",
+        desc: "Doble pared, mantiene la temperatura por más de 12 hs.",
+        tags: ["Tapa cebadora"],
+        image: "/img/souvenirs/termo-1l.jpg",
+        emoji: "🧊",
+      },
+      {
+        name: "Termo 750 ml",
+        price: "$ 24.500",
+        desc: "Liviano y práctico para llevar a todos lados.",
+        tags: ["Viaje"],
+        image: "/img/souvenirs/termo-750.jpg",
+        emoji: "🥤",
+      },
+    ],
+  },
+  {
+    id: "marroquineria",
+    title: "Marroquinería",
+    items: [
+      {
+        name: "Cartera de Cuero",
+        price: "$ 41.000",
+        desc: "Cuero vacuno 100%. Hecha a mano por artesanos locales.",
+        tags: ["Premium", "Hecho en Chaco"],
+        image: "/img/souvenirs/cartera-cuero.jpg",
+        emoji: "👜",
+      },
+      {
+        name: "Billetera",
+        price: "$ 18.900",
+        desc: "Costuras reforzadas. Múltiples ranuras para tarjetas.",
+        tags: ["Cuero"],
+        image: "/img/souvenirs/billetera.jpg",
+        emoji: "👛",
+      },
+    ],
+  },
+];
+
+const waLink = (name: string) =>
+  `https://wa.me/${WA}?text=${encodeURIComponent(
+    `Hola, me gustaría consultar por el souvenir: ${name}.`
+  )}`;
 ---
 
-<BaseLayout title="Souvenirs – Comedor Luna">
+<BaseLayout title="Souvenirs — Comedor Luna">
   <NavBar />
-  
-  <header class="section">
-    <div class="container-max text-center">
-      <h1 class="section-title">Souvenirs & Complementos</h1>
-      <p class="muted-center">Llevate un pedacito de Comedor Luna a casa.</p>
+
+  <!-- HERO con gradiente (sin imagen) -->
+  <header class="relative grid place-items-center min-h-[48vh] overflow-hidden souvenirs-hero">
+    <div class="relative text-center text-white px-6 z-10">
+      <h1 class="font-serif text-[clamp(2.2rem,4.5vw,3.4rem)] leading-[1.12] drop-shadow">
+        Souvenirs
+      </h1>
+      <p class="mt-3 max-w-[70ch] mx-auto opacity-95">
+        Objetos con identidad local para llevarte un pedacito de Comedor Luna — y de nuestra tierra — a casa.
+      </p>
+
+      <div class="mt-5 flex flex-wrap gap-2 justify-center">
+        <a href="#mates-bombillas" class="chip">Mates</a>
+        <a href="#termos" class="chip">Termos</a>
+        <a href="#marroquineria" class="chip">Marroquinería</a>
+      </div>
     </div>
+
+    <div class="pointer-events-none absolute left-0 right-0 bottom-0 h-[110px]
+                bg-gradient-to-b from-transparent to-[var(--bg)]"></div>
   </header>
 
-  <section class="section">
-    <div class="container-max grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card 1 -->
-      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
-        <img src="/img/dulce-leche-casero.jpg" alt="Dulce de leche casero" class="w-full h-44 object-cover" />
-        <div class="p-5">
-          <h2 class="font-semibold">Dulce de Leche Casero</h2>
-          <p class="muted mt-1">Frasco 450g · $2500</p>
-        </div>
-      </article>
+  <main class="container-max">
+    <!-- Nota / Info -->
+    <section class="py-8">
+      <div class="rounded-2xl p-4 md:p-5 bg-[#f8efe6] border border-line shadow-mdx">
+        <p class="text-sm md:text-[0.98rem]">
+          <strong>Hecho a mano.</strong> Muchos de nuestros souvenirs son realizados por artesanos locales.
+          Los precios pueden variar levemente según disponibilidad y producción.
+          Para pedidos especiales o corporativos, <a href={`https://wa.me/${WA}`} class="underline text-[var(--primary)] hover:opacity-90">escribinos por WhatsApp</a>.
+        </p>
+      </div>
+    </section>
 
-      <!-- Card 2 -->
-      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
-        <img src="/img/pepas-caseras.jpg" alt="Pepas caseras" class="w-full h-44 object-cover" />
-        <div class="p-5">
-          <h2 class="font-semibold">Pepas Caseras</h2>
-          <p class="muted mt-1">Bandeja · $1800</p>
+    <!-- Listado por categorías -->
+    {categories.map((cat) => (
+      <section id={cat.id} class="py-8 md:py-12">
+        <div class="flex items-baseline justify-between mb-4 md:mb-6 gap-4">
+          <h2 class="font-serif text-2xl md:text-3xl">{cat.title}</h2>
+          <a href="#top" class="text-sm opacity-70 hover:opacity-100">Volver arriba</a>
         </div>
-      </article>
 
-      <!-- Card 3 -->
-      <article class="rounded-2xl overflow-hidden bg-white border border-line shadow-mdx">
-        <img src="/img/salsa-tomate.jpg" alt="Salsa de tomate" class="w-full h-44 object-cover" />
-        <div class="p-5">
-          <h2 class="font-semibold">Salsa de Tomate Artesanal</h2>
-          <p class="muted mt-1">Frasco 500ml · $1900</p>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {cat.items.map((it) => (
+            <article class="souvenir-card">
+              <div class="media">
+                {it.image ? (
+                  <img
+                    src={it.image}
+                    alt={it.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="flex items-center justify-center w-full h-full text-4xl select-none">
+                    {it.emoji ?? "🎁"}
+                  </div>
+                )}
+                {it.tags && it.tags.length > 0 && (
+                  <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                    {it.tags.map((t) => (
+                      <span class="badge">{t}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div class="p-4">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="font-semibold">{it.name}</h3>
+                  <span class="price">{it.price}</span>
+                </div>
+                <p class="muted mt-2">{it.desc}</p>
+
+                <div class="mt-4 flex gap-2">
+                  <a href={waLink(it.name)} target="_blank" rel="noopener" class="btn btn-primary">Consultar</a>
+                  <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Quiero hacer un pedido especial.")}`} target="_blank" rel="noopener" class="btn btn-ghost">Pedido especial</a>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </article>
-    </div>
-  </section>
+      </section>
+    ))}
+  </main>
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Estilos específicos de la página -->
+  <style>
+    /* HERO gradiente (sin imagen), usa la paleta del sitio */
+    .souvenirs-hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 400px at 50% -20%, rgba(255, 255, 255, 0.09) 0%, transparent 60%),
+        linear-gradient(180deg,
+          rgba(47,36,28, 1) 0%,
+          rgba(93,64,55, .92) 40%,
+          rgba(93,64,55, .85) 65%,
+          rgba(47,36,28, .85) 100%
+        );
+    }
+
+    /* Chips de navegación */
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.4rem .75rem;
+      background:#fff;
+      color:var(--text);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:999px;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    .chip:hover{ opacity:.95 }
+
+    /* Card de producto */
+    .souvenir-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:var(--shadow-md, 0 8px 24px rgba(0,0,0,.08));
+      display:flex;
+      flex-direction:column;
+    }
+    .souvenir-card .media{
+      position:relative;
+      width:100%;
+      aspect-ratio: 4 / 3;
+      background:linear-gradient(180deg, #f3ede6, #e9dfd6);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:.2rem .55rem;
+      background:var(--accent);
+      color:#8a4b14;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:700;
+      border:1px solid rgba(0,0,0,.05);
+    }
+    .price{
+      font-weight:700;
+      color:var(--primary);
+      white-space:nowrap;
+    }
+  </style>
 </BaseLayout>
+
