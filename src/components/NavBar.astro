@@ -1,7 +1,12 @@
 ---
 const rawPath = Astro.url.pathname.replace(/\/+$/, '');
+const base = import.meta.env.BASE_URL.replace(/\/+$/, ''); // "/comedor-luna" o ""
+
+const escapeRegExp = (s: string) =>
+  s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 const normalizedPath = (() => {
-  const p = rawPath.replace(/^\/comedor-luna/, '');
+  const p = base ? rawPath.replace(new RegExp('^' + escapeRegExp(base)), '') : rawPath;
   return p === '' ? '/' : p;
 })();
 
@@ -12,15 +17,16 @@ const link = (href: string) =>
       : ''
   }`;
 ---
+  
 
 <nav class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
   <div class="container-max flex items-center justify-between py-3">
-    <a href="./" class="font-serif text-2xl">Comedor Luna</a>
+    <a href={`${import.meta.env.BASE_URL}`} class="font-serif text-2xl">Comedor Luna</a>
     <div class="flex items-center gap-5">
-      <a class={link('/menu')} href="menu">Menú</a>
-      <a class={link('/historia')} href="historia">Nosotros</a>
-      <a class={link('/souvenirs')} href="souvenirs">Souvenirs</a>
-      <a class="btn btn-primary" href="./#contacto">Contacto</a>
+    <a class={link('/menu')} href={`${import.meta.env.BASE_URL}menu/`}>Menú</a>
+    <a class={link('/historia')} href={`${import.meta.env.BASE_URL}historia/`}>Nosotros</a>
+    <a class={link('/souvenirs')} href={`${import.meta.env.BASE_URL}souvenirs/`}>Souvenirs</a>
+    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}#contacto`}>Contacto</a>
     </div>
   </div>
 </nav>

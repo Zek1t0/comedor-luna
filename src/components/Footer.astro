@@ -1,3 +1,7 @@
+---
+const base = import.meta.env.BASE_URL; // "/" en dev, "/comedor-luna/" en prod
+const link = (p = "") => `${base}${p}`;
+---
 <footer class="bg-footer text-[#efe7df] pt-14 pb-8 mt-16">
   <div class="container-max grid md:grid-cols-[1.1fr_.6fr_.9fr] gap-7">
     <div>

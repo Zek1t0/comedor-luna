@@ -1,3 +1,6 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <section id="menu" class="section" aria-labelledby="nuestro-menu">
   <div class="container-max">
     <h2 class="section-title" id="nuestro-menu">Nuestro Menú Clásico</h2>
@@ -5,7 +8,7 @@
 
     <div class="grid md:grid-cols-[.95fr_1.05fr] gap-9 items-start">
       <figure class="rounded-xl2 overflow-hidden shadow-mdx">
-        <img src="/public/img/milanesa.jpeg" alt="Milanesas con ensalada" class="w-full h-auto" />
+        <img src={`${base}img/milanesa.jpeg`} alt="Milanesas con ensalada" class="w-full h-auto" />
       </figure>
 
       <div class="grid gap-7">
@@ -47,7 +50,7 @@
         </div>
 
         <div class="place-self-center mt-4">
-          <a href="/menu" class="btn btn-primary">Quiero ver más platos 😍</a>
+          <a href={`${base}menu/`} class="btn btn-primary">Quiero ver más platos 😍</a>
         </div>
       </div>
     </div>

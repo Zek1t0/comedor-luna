@@ -1,4 +1,6 @@
 import { useRef } from "react";
+const base = import.meta.env.BASE_URL;
+const img = (p: string) => base + p.replace(/^\//, '');
 
 type Testimonial = {
   id: number;
@@ -17,7 +19,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Muy bien atendidos, la comida excelente. Porciones abundantes. El lugar onda bodegón, hambiente familiar… ¡lo recomiendo! 👍",
-    dish: { name: "Vacio al horno", image: "/img/vacio-horno.jpg" },
+    dish: { name: "Vacio al horno", image: img("img/vacio-horno.jpg") },
   },
   {
     id: 2,
@@ -26,7 +28,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Siempre vamos con mi familia. Tanto la atención como la comida es espectacular… Su flan es una delicia.",
-    dish: { name: "Flan con dulce de leche", image: "/img/flan-porcion.jpg" },
+    dish: { name: "Flan con dulce de leche", image: img("img/flan-porcion.jpg") },
   },
   {
     id: 3,
@@ -35,7 +37,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Excelente atención!!! La comida una delicia, manjar!!! Recomendable 100%.",
-    dish: { name: "Canelones", image: "/img/canelones.jpg" },
+    dish: { name: "Canelones", image: img("img/canelones.jpg") },
   },
 ];
 
