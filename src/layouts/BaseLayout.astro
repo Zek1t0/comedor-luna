@@ -4,6 +4,7 @@ const {
   description = 'Sabores que cuentan historias familiares',
 } = Astro.props;
 import '../styles/global.css';
+import { WhatsAppButton } from '../components/react/WhatsappButton.tsx';
 ---
 
 <!doctype html>
@@ -22,5 +23,6 @@ import '../styles/global.css';
   </head>
   <body class="font-sans bg-cream text-text">
     <slot />
+    <WhatsAppButton client:visible />
   </body>
 </html>

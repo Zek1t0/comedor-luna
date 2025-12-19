@@ -1,6 +1,4 @@
-import { useRef } from "react";
-const base = import.meta.env.BASE_URL;
-const img = (p: string) => base + p.replace(/^\//, '');
+import { useEffect, useRef, useState } from "react";
 
 type Testimonial = {
   id: number;
@@ -11,6 +9,13 @@ type Testimonial = {
   dish: { name: string; image: string };
 };
 
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + "/";
+
+const withBase = (path: string) => `${base}${path.replace(/^\/+/, "")}`;
+
+
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -19,7 +24,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Muy bien atendidos, la comida excelente. Porciones abundantes. El lugar onda bodegón, hambiente familiar… ¡lo recomiendo! 👍",
-    dish: { name: "Vacio al horno", image: img("img/vacio-horno.jpg") },
+    dish: { name: "Vacio al horno", image: withBase("img/vacio-horno.jpg") },
   },
   {
     id: 2,
@@ -28,7 +33,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Siempre vamos con mi familia. Tanto la atención como la comida es espectacular… Su flan es una delicia.",
-    dish: { name: "Flan con dulce de leche", image: img("img/flan-porcion.jpg") },
+    dish: { name: "Flan con dulce de leche", image: withBase("img/flan-porcion.jpg") },
   },
   {
     id: 3,
@@ -37,20 +42,95 @@ const testimonials: Testimonial[] = [
     rating: 5,
     comment:
       "Excelente atención!!! La comida una delicia, manjar!!! Recomendable 100%.",
-    dish: { name: "Canelones", image: img("img/canelones.jpg") },
+    dish: { name: "Canelones", image: withBase("img/canelones.jpg") },
   },
 ];
 
 export function TestimonialsCarousel() {
+  // Elegí tu modo:
+  // - true  => carrusel infinito (1-2-3-1-2-3...)
+  // - false => finito y se ocultan flechas en los extremos
+  const INFINITE = true;
+
   const trackRef = useRef<HTMLDivElement>(null);
   const firstSlideRef = useRef<HTMLDivElement>(null);
 
-  const scrollBy = (dir: "prev" | "next") => {
+  const [index, setIndex] = useState(0);
+  const lastIndex = Math.max(0, testimonials.length - 1);
+
+  const getStep = () => {
+    const el = trackRef.current;
+    if (!el) return 0;
+
+    const slideWidth = firstSlideRef.current?.clientWidth ?? el.clientWidth;
+
+    // en flex con gap, la distancia real entre inicios es width + gap
+    const styles = getComputedStyle(el);
+    const gapStr = (styles.columnGap || styles.gap || "0").toString();
+    const gap = Number.parseFloat(gapStr) || 0;
+
+    return slideWidth + gap;
+  };
+
+  const getCurrentIndex = () => {
+    const el = trackRef.current;
+    if (!el) return 0;
+    const step = getStep();
+    if (!step) return 0;
+    return Math.round(el.scrollLeft / step);
+  };
+
+  const go = (dir: "prev" | "next") => {
     const el = trackRef.current;
     if (!el) return;
-    const slideWidth = firstSlideRef.current?.clientWidth ?? el.clientWidth;
-    el.scrollBy({ left: dir === "next" ? slideWidth : -slideWidth, behavior: "smooth" });
+
+    const step = getStep();
+    if (!step) return;
+
+    const current = getCurrentIndex();
+    let next = dir === "next" ? current + 1 : current - 1;
+
+    if (INFINITE) {
+      if (next > lastIndex) next = 0;
+      if (next < 0) next = lastIndex;
+    } else {
+      next = Math.max(0, Math.min(lastIndex, next));
+    }
+
+    el.scrollTo({ left: next * step, behavior: "smooth" });
+    setIndex(next);
   };
+
+  // Mantener index sincronizado si el usuario hace scroll con mouse/touchpad/touch
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    let raf = 0;
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const i = getCurrentIndex();
+        // clamp por si el usuario scrollea raro
+        const clamped = Math.max(0, Math.min(lastIndex, i));
+        setIndex(clamped);
+      });
+    };
+
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [lastIndex]);
+
+  const showPrev = INFINITE || index > 0;
+  const showNext = INFINITE || index < lastIndex;
 
   return (
     <div className="container-max">
@@ -119,26 +199,45 @@ export function TestimonialsCarousel() {
         </div>
 
         {/* flechas */}
-        <button
-          onClick={() => scrollBy("prev")}
-          className="grid place-items-center absolute left-2 md:-left-12 top-1/2 -translate-y-1/2
+        {showPrev && (
+          <button
+            onClick={() => go("prev")}
+            className="grid place-items-center absolute left-2 md:-left-12 top-1/2 -translate-y-1/2
                      w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
-          aria-label="Anterior"
-        >
-          <svg viewBox="0 0 24 24" width="18" height="18">
-            <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
-        <button
-          onClick={() => scrollBy("next")}
-          className="grid place-items-center absolute right-2 md:-right-12 top-1/2 -translate-y-1/2
+            aria-label="Anterior"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        )}
+
+        {showNext && (
+          <button
+            onClick={() => go("next")}
+            className="grid place-items-center absolute right-2 md:-right-12 top-1/2 -translate-y-1/2
                      w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
-          aria-label="Siguiente"
-        >
-          <svg viewBox="0 0 24 24" width="18" height="18">
-            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+            aria-label="Siguiente"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        )}
       </div>
     </div>
   );
