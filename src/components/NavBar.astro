@@ -1,17 +1,26 @@
 ---
-const path = Astro.url.pathname;
+const rawPath = Astro.url.pathname.replace(/\/+$/, '');
+const normalizedPath = (() => {
+  const p = rawPath.replace(/^\/comedor-luna/, '');
+  return p === '' ? '/' : p;
+})();
+
 const link = (href: string) =>
-  `opacity-85 hover:opacity-100 ${path.startsWith(href) ? 'font-semibold text-primary opacity-100' : ''}`;
+  `opacity-85 hover:opacity-100 ${
+    normalizedPath === href || normalizedPath.startsWith(href + '/')
+      ? 'font-semibold text-primary opacity-100'
+      : ''
+  }`;
 ---
 
 <nav class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
   <div class="container-max flex items-center justify-between py-3">
-    <a href="/" class="font-serif text-2xl">Comedor Luna</a>
+    <a href="./" class="font-serif text-2xl">Comedor Luna</a>
     <div class="flex items-center gap-5">
-      <a class={link('/menu')} href="/menu">Menú</a>
-      <a class={link('/historia')} href="/historia">Nosotros</a>
-      <a class={link('/souvenirs')} href="/souvenirs">Souvenirs</a>
-      <a class="btn btn-primary" href="/#contacto">Contacto</a>
+      <a class={link('/menu')} href="menu">Menú</a>
+      <a class={link('/historia')} href="historia">Nosotros</a>
+      <a class={link('/souvenirs')} href="souvenirs">Souvenirs</a>
+      <a class="btn btn-primary" href="./#contacto">Contacto</a>
     </div>
   </div>
 </nav>

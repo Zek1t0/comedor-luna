@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://Zek1t0.github.io',
-  base: '/comedor-luna/',
+  base: '/comedor-luna',
 
   integrations: [react()],
 
