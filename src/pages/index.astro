@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL;
 
 <header
   class="relative grid place-items-center min-h-[92vh] md:min-h-[96vh] pt-6 hero"
-  style="--hero-image: url('/img/hero.png')"
+  style={`--hero-image: url('${base}img/hero.png')`}
 >
 <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/85"></div>
   <div class="relative text-white text-center py-[6vh] container-max" data-animate>
@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
       <a class="btn btn-primary shadow-lgx" href="#menu">Ver Nuestro Menú</a>
       <a
         class="btn !border-white/30 text-white hover:bg-white/10"
-        href="#historia"
+        href={`${base}historia/`}
       >
         Nuestra Historia
       </a>
