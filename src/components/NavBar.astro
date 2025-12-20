@@ -1,32 +1,103 @@
 ---
-const rawPath = Astro.url.pathname.replace(/\/+$/, '');
-const base = import.meta.env.BASE_URL.replace(/\/+$/, ''); // "/comedor-luna" o ""
+const rawPath = (Astro.url.pathname || "/").replace(/\/+$/, "") || "/";
 
-const escapeRegExp = (s: string) =>
-  s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// BASE_URL: en dev suele ser "/", en GH Pages suele ser "/comedor-luna/"
+const baseUrl = import.meta.env.BASE_URL; // normalmente termina con "/"
+const basePath = baseUrl.replace(/\/+$/, ""); // sin trailing slash
 
 const normalizedPath = (() => {
-  const p = base ? rawPath.replace(new RegExp('^' + escapeRegExp(base)), '') : rawPath;
-  return p === '' ? '/' : p;
+  // sacamos el basePath del pathname para comparar rutas tipo "/menu", "/historia", etc.
+  if (basePath && basePath !== "/" && rawPath.startsWith(basePath)) {
+    const stripped = rawPath.slice(basePath.length);
+    return stripped === "" ? "/" : stripped;
+  }
+  return rawPath === "" ? "/" : rawPath;
 })();
 
-const link = (href: string) =>
+const withBase = (p: string) => `${baseUrl}${p.replace(/^\/+/, "")}`;
+
+const isActive = (href: string) =>
+  normalizedPath === href || (href !== "/" && normalizedPath.startsWith(href + "/"));
+
+const linkClass = (href: string) =>
   `opacity-85 hover:opacity-100 ${
-    normalizedPath === href || normalizedPath.startsWith(href + '/')
-      ? 'font-semibold text-primary opacity-100'
-      : ''
+    isActive(href) ? "font-semibold text-primary opacity-100" : ""
   }`;
+
+const contactHref = normalizedPath === "/" ? "#contacto" : `${withBase("")}#contacto`;
 ---
-  
 
 <nav class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
-  <div class="container-max flex items-center justify-between py-3">
-    <a href={`${import.meta.env.BASE_URL}`} class="font-serif text-2xl">Comedor Luna</a>
-    <div class="flex items-center gap-5">
-    <a class={link('/menu')} href={`${import.meta.env.BASE_URL}menu/`}>Menú</a>
-    <a class={link('/historia')} href={`${import.meta.env.BASE_URL}historia/`}>Nosotros</a>
-    <a class={link('/souvenirs')} href={`${import.meta.env.BASE_URL}souvenirs/`}>Souvenirs</a>
-    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}#contacto`}>Contacto</a>
+  <div class="container-max flex items-center justify-between py-3 px-4 md:px-0 min-w-0">
+    <!-- Logo -->
+    <a href={withBase("")} class="font-serif text-2xl leading-none whitespace-nowrap">
+      Comedor Luna
+    </a>
+
+    <!-- Botón mobile -->
+    <button
+      class="md:hidden inline-flex items-center justify-center rounded-xl border border-black/10 bg-white/80 px-3 py-2"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-nav-toggle
+      type="button"
+    >
+      <!-- icono hamburguesa -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Desktop links (igual que antes) -->
+    <div class="hidden md:flex items-center gap-5">
+      <a class={linkClass("/menu")} href={withBase("menu/")}>Menú</a>
+      <a class={linkClass("/historia")} href={withBase("historia/")}>Nosotros</a>
+      <a class={linkClass("/souvenirs")} href={withBase("souvenirs/")}>Souvenirs</a>
+      <a class="btn btn-primary" href={contactHref}>Contacto</a>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div
+    id="mobile-nav"
+    class="md:hidden hidden border-t border-black/10 bg-white/95 backdrop-blur"
+    data-nav-menu
+  >
+    <div class="container-max px-4 py-3 flex flex-col gap-3">
+      <a class={linkClass("/menu")} href={withBase("menu/")}>Menú</a>
+      <a class={linkClass("/historia")} href={withBase("historia/")}>Nosotros</a>
+      <a class={linkClass("/souvenirs")} href={withBase("souvenirs/")}>Souvenirs</a>
+      <a class="btn btn-primary w-full justify-center" href={contactHref}>Contacto</a>
     </div>
   </div>
 </nav>
+
+<script is:inline>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const menu = document.querySelector('[data-nav-menu]');
+
+  if (toggle && menu) {
+    const close = () => {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    const open = () => {
+      menu.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    };
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? close() : open();
+    });
+
+    // cerrar al tocar un link
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+
+    // si pasás a desktop, cerralo
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 768px)').matches) close();
+    });
+  }
+</script>
