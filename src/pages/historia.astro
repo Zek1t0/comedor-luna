@@ -45,10 +45,10 @@ const features = [
       "
     >
       <div class="container-max text-center py-24 md:py-36">
-        <h1 class="font-serif text-4xl md:text-6xl tracking-tight drop-shadow-sm">
+        <h1 data-animate="up" style="--reveal-delay: 0ms" class="font-serif text-4xl md:text-6xl tracking-tight drop-shadow-sm">
           Nuestra Historia
         </h1>
-        <p class="mt-6 text-lg md:text-xl opacity-90 max-w-[65ch] mx-auto">
+        <p data-animate="up" style="--reveal-delay: 100ms" class="mt-6 text-lg md:text-xl opacity-90 max-w-[65ch] mx-auto">
           Desde 1962, creando momentos especiales alrededor de la mesa con sabores auténticos y calidez humana.
         </p>
       </div>
@@ -57,10 +57,10 @@ const features = [
     <!-- Sección: El Comienzo -->
     <section class="section">
       <div class="container-max">
-        <h2 class="section-title">El Comienzo</h2>
-        <div class="h-1 w-16 bg-primary/50 mx-auto rounded-full mb-10"></div>
+        <h2 data-animate="up" class="section-title">El Comienzo</h2>
+        <div data-animate="fade" style="--reveal-delay: 60ms" class="h-1 w-16 bg-primary/50 mx-auto rounded-full mb-10"></div>
 
-        <div class="grid items-center gap-10 md:gap-14 md:grid-cols-[1fr,520px]">
+        <div data-animate="right" style="--reveal-delay: 0ms" class="grid items-center gap-10 md:gap-14 md:grid-cols-[1fr,520px]">
           <div>
             <p class="text-4xl md:text-5xl font-serif text-primary mb-4">1962</p>
             <h3 class="text-2xl md:text-3xl font-serif mb-4">Un Sueño Hecho Realidad</h3>
@@ -98,8 +98,10 @@ const features = [
         </p>
 
         <div class="grid gap-6 md:gap-8 md:grid-cols-2">
-          {features.map((f) => (
+          {features.map((f, i) => (
             <article
+            data-animate="up"
+            style={`--reveal-delay: ${i * 90}ms`}
               class="
                 rounded-xl2 bg-accent/40 border border-line/60 p-7 md:p-8 shadow-mdx
                 transition duration-300 hover:shadow-lgx
@@ -117,7 +119,7 @@ const features = [
     <!-- CTA -->
     <section class="py-16">
       <div class="container-max">
-        <div class="rounded-xl2 shadow-lgx p-10 md:p-12 text-cream bg-[var(--color-footer)]">
+        <div data-animate="up" class="rounded-xl2 shadow-lgx p-10 md:p-12 text-cream bg-[var(--color-footer)]">
           <h3 class="font-serif text-2xl md:text-3xl mb-4">Ven a Vivir la Experiencia</h3>
           <p class="max-w-[70ch] opacity-90">
             Descubrí por qué Comedor Luna es más que un restaurante: es el lugar donde los sabores auténticos

@@ -38,9 +38,73 @@ html, body { overflow-x: hidden; }
 .btn-ghost   { @apply bg-white border border-black/10; }
 
 .muted       { @apply text-muted; }
-.section     { @apply py-14 md:py-24; }
+.section     { @apply py-14 md:py-20; }
 .section-title{ @apply text-center font-serif text-3xl md:text-4xl mb-4; }
 .muted-center{ @apply text-center max-w-[70ch] mx-auto mb-9 text-muted; }
 
 .shadow-mdx  { box-shadow: var(--shadow-md); }
 .shadow-lgx  { box-shadow: var(--shadow-lg); }
+
+/* =========================
+   Scroll reveal (data-animate)
+   ========================= */
+
+/* 🎛️ Controles globales (tocá acá) */
+:root{
+  --reveal-distance: 18px;      /* cuánto “viaja” */
+  --reveal-duration: 650ms;     /* velocidad */
+  --reveal-delay: 0ms;          /* delay base */
+  --reveal-ease: cubic-bezier(.2,.8,.2,1);
+
+  --reveal-blur: 2px;           /* menos blur (subí/bajá acá) */
+  --reveal-scale: .99;          /* zoom inicial (1 = sin zoom) */
+}
+
+/* Estado inicial */
+[data-animate]{
+  --tx: 0px;
+  --ty: var(--reveal-distance); /* default: aparece desde abajo */
+
+  opacity: 0;
+  transform: translate3d(var(--tx), var(--ty), 0) scale(var(--reveal-scale));
+  filter: blur(var(--reveal-blur));
+
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay),
+    filter var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
+
+  will-change: opacity, transform, filter;
+}
+
+/* Direcciones / estilos */
+[data-animate="up"]    { --ty: var(--reveal-distance); }
+[data-animate="down"]  { --ty: calc(var(--reveal-distance) * -1); }
+[data-animate="left"]  { --tx: var(--reveal-distance); --ty: 0px; }
+[data-animate="right"] { --tx: calc(var(--reveal-distance) * -1); --ty: 0px; }
+[data-animate="fade"]  { --tx: 0px; --ty: 0px; }
+[data-animate="zoom"]  { --tx: 0px; --ty: 0px; --reveal-scale: .97; }
+
+/* Estado final */
+[data-animate].is-inview{
+  opacity: 1;
+  transform: translate3d(0,0,0) scale(1);
+  filter: blur(0);
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  [data-animate]{
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* Ayudita para taps en mobile (botones, flechas, etc.) */
+.tap-target{
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+/* ========================= */

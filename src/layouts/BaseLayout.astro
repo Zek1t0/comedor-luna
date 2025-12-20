@@ -24,5 +24,48 @@ import { WhatsAppButton } from '../components/react/WhatsappButton.tsx';
   <body class="font-sans bg-cream text-text">
     <slot />
     <WhatsAppButton client:load />
+    <script is:inline>
+      (() => {
+        // evita doble init si hay navegación tipo SPA
+        if (window.__revealInit) return;
+        window.__revealInit = true;
+
+        const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+
+        const markVisible = (el) => el.classList.add('is-inview');
+
+        const scan = (root = document) => root.querySelectorAll?.('[data-animate]')?.forEach((el) => {
+          // si ya está visible, no jodas
+          if (el.classList.contains('is-inview')) return;
+          io.observe(el);
+        });
+
+        if (reduce) {
+          document.querySelectorAll('[data-animate]').forEach(markVisible);
+          return;
+        }
+
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            markVisible(e.target);
+            io.unobserve(e.target);
+          }
+        }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+        scan(document);
+
+        // por si algo se renderiza después (islas React, etc.)
+        const mo = new MutationObserver((muts) => {
+          for (const m of muts) {
+            for (const n of m.addedNodes) {
+              if (n.nodeType !== 1) continue;
+              scan(n);
+            }
+          }
+        });
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
   </body>
 </html>

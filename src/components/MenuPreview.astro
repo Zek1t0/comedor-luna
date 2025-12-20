@@ -3,15 +3,15 @@ const base = import.meta.env.BASE_URL;
 ---
 <section id="menu" class="section" aria-labelledby="nuestro-menu">
   <div class="container-max">
-    <h2 class="section-title" id="nuestro-menu">Nuestro Menú Clásico</h2>
-    <p class="muted-center">Una selección de nuestros platos más populares, preparados con amor y tradición.</p>
+    <h2 data-animate="up" class="section-title" id="nuestro-menu">Nuestro Menú Clásico</h2>
+    <p data-animate="up" style="--reveal-delay: 100ms" class="muted-center">Una selección de nuestros platos más populares, preparados con amor y tradición.</p>
 
     <div class="grid md:grid-cols-[.95fr_1.05fr] gap-9 items-start">
-      <figure class="rounded-xl2 overflow-hidden shadow-mdx">
+      <figure data-animate="left" style="--reveal-delay: 180ms" class="rounded-xl2 overflow-hidden shadow-mdx">
         <img src={`${base}img/milanesa.jpeg`} alt="Milanesas con ensalada" class="w-full h-auto" />
       </figure>
 
-      <div class="grid gap-7">
+      <div data-animate="right" style="--reveal-delay: 180ms" class="grid gap-7">
         <div>
           <h3 class="font-serif mb-2 text-xl">Platos Principales</h3>
           <ul class="border-t border-line">
