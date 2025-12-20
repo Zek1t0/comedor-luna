@@ -27,7 +27,9 @@
 }
 
 html { scroll-behavior: smooth; }
-html, body { overflow-x: hidden; }
+/* ✅ mejor: no tocar overflow en html */
+body { overflow-x: clip; }   /* o hidden si preferís */
+
 
 
 /* Helpers reutilizables */
