@@ -163,7 +163,10 @@ export function TestimonialsCarousel() {
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"
+                    aria-hidden="true"
+                  />
                   <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
                     <h3 className="text-white font-semibold text-lg drop-shadow">{t.dish.name}</h3>
                   </div>
@@ -201,11 +204,13 @@ export function TestimonialsCarousel() {
         {/* flechas */}
         {showPrev && (
           <button
-            onClick={() => go("prev")}
-            className="grid place-items-center absolute left-2 md:-left-12 top-1/2 -translate-y-1/2
-                     w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
-            aria-label="Anterior"
-          >
+          type="button"
+          onClick={() => go("prev")}
+          className="z-50 grid place-items-center absolute left-2 md:-left-12 top-1/2 -translate-y-1/2
+                  w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
+          aria-label="Anterior"
+        >
+
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
                 d="M15 18l-6-6 6-6"
@@ -221,9 +226,10 @@ export function TestimonialsCarousel() {
 
         {showNext && (
           <button
+            type="button"
             onClick={() => go("next")}
-            className="grid place-items-center absolute right-2 md:-right-12 top-1/2 -translate-y-1/2
-                     w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
+            className="z-50 grid place-items-center absolute right-2 md:-right-12 top-1/2 -translate-y-1/2
+                    w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/90 border border-black/10 shadow-md hover:bg-white"
             aria-label="Siguiente"
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
