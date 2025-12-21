@@ -1,43 +1,44 @@
-# Astro Starter Kit: Minimal
+# Comedor Luna 🍽️
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Sitio web estático para **Comedor Luna**: una landing moderna y rápida, pensada para mostrar el menú, la historia del lugar, testimonios y un contacto directo (WhatsApp).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> ✅ Actualmente publicado en GitHub Pages (temporal).  
+> 🌐 Próximamente: **dominio oficial** y deploy fuera de GitHub Pages.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## ✨ Características
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- Diseño responsive (mobile-first) y limpio
+- Secciones: **Hero**, **Features**, **Testimonios (carousel)**, **Menú**, **Historia**, **Contacto**
+- Botón flotante de **WhatsApp**
+- Navegación con menú hamburguesa en mobile
+- Estilos globales y sistema de variables CSS (colores, sombras, etc.)
+- Rutas compatibles con `BASE_URL` (ideal para deploys en subpaths)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🧰 Tecnologías
 
-Any static assets, like images, can be placed in the `public/` directory.
+- [Astro](https://astro.build/) (sitio estático)
+- CSS + utilidades (con configuración actual del proyecto)
+- Astro para páginas/layout y componentes
+- React (islands) para componentes interactivos (WhatsApp button y carousel)
+- JavaScript inline en componentes .astro para micro-interacciones (ej: toggle del menú mobile)
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## 🚀 Demo (temporal)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+- GitHub Pages: `https://zek1t0.github.io/comedor-luna/`
 
-## 👀 Want to learn more?
+> Nota: este link es temporal. Cuando salga el dominio oficial, se actualizará acá.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 📦 Instalación y uso (local)
+
+1) Cloná el repo:
+```bash
+git clone https://github.com/<TU-USUARIO>/<TU-REPO>.git
+cd <TU-REPO>
