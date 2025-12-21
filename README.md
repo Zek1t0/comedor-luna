@@ -2,6 +2,8 @@
 
 Sitio web estático para **Comedor Luna**: una landing moderna y rápida, pensada para mostrar el menú, la historia del lugar, testimonios y un contacto directo (WhatsApp).
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c7190461-709e-41be-baa5-561e4d09cbeb" />
+
 > ✅ Actualmente publicado en GitHub Pages (temporal).  
 > 🌐 Próximamente: **dominio oficial** y deploy fuera de GitHub Pages.
 
