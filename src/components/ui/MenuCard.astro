@@ -1,39 +1,33 @@
 ---
+import WhatsAppChip from "./WhatsAppChip.astro";
+
 interface Props {
   name: string;
-  price?: number | string;         // 3200  ó "$3.200" ó "Copa $1.500 / Botella $6.800"
   description?: string;
-  tags?: string | string[];        // "Clásico, Abundante" ó ["Clásico","Abundante"]
-  featured?: boolean;              // opcional: resaltar
+  tags?: string | string[];
+  featured?: boolean;
+
+  // Chip WhatsApp
+  chipLabel?: string; // default "Consultar"
 }
 
-const { name, price, description = "", tags = [], featured = false } = Astro.props;
+const { name, description = "", tags = [], featured = false, chipLabel = "Consultar el precio" } = Astro.props;
 
-// normalizo tags para aceptar string o array
 const tagList = Array.isArray(tags)
   ? tags
   : String(tags || "")
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
-
-// Formateo precio si vino como número
-function fmtPrice(p: number) {
-  return `$${new Intl.NumberFormat("es-AR").format(p)}`;
-}
-const priceText =
-  typeof price === "number" ? fmtPrice(price) : (price ?? "");
 ---
 
-<article class={`rounded-2xl bg-white border border-line shadow-mdx p-6 ${featured ? 'ring-1 ring-primary/30' : ''}`}>
+<article class={`rounded-2xl bg-white border border-line shadow-mdx p-6 ${featured ? "ring-1 ring-primary/30" : ""}`}>
   <div class="flex items-start justify-between gap-3">
     <h3 class="text-xl font-medium">{name}</h3>
-    {priceText && <span class="font-mono text-primary">{priceText}</span>}
+    <WhatsAppChip dish={name} label={chipLabel} size="sm" />
   </div>
 
-  {description && (
-    <p class="muted leading-relaxed mt-2">{description}</p>
-  )}
+  {description && <p class="muted leading-relaxed mt-2">{description}</p>}
 
   {tagList.length > 0 && (
     <div class="flex flex-wrap gap-2 mt-3">
@@ -43,6 +37,5 @@ const priceText =
     </div>
   )}
 
-  <!-- Por si querés agregar algo extra en una card puntual -->
   <slot />
 </article>

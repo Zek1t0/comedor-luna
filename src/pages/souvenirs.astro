@@ -108,25 +108,37 @@ const waLink = (name: string) =>
   <NavBar />
 
   <!-- HERO con gradiente (sin imagen) -->
-  <header class="relative grid place-items-center min-h-[48vh] overflow-hidden souvenirs-hero">
-    <div class="relative text-center text-white px-6 z-10">
-      <h1 data-animate="up" style="--reveal-delay: 0ms" class="font-serif text-[clamp(2.2rem,4.5vw,3.4rem)] leading-[1.12] drop-shadow">
-        Souvenirs
-      </h1>
-      <p data-animate="up" style="--reveal-delay: 100ms" class="mt-3 max-w-[70ch] mx-auto opacity-95">
-        Objetos con identidad local para llevarte un pedacito de<br />Comedor Luna — y de nuestras tierras — a casa.
+  <header class="relative overflow-hidden">
+    <img
+      src={"/img/fondo5.jpg"}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover blur-xs scale-110"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-black/55 md:bg-black/45"></div>
+
+
+    <div class="relative mx-auto max-w-6xl px-6 py-20 text-center text-white">
+      <h1 class="font-serif text-5xl md:text-6xl">Souvenirs</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-white/90 drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)]">
+        Objetos con identidad local para llevarte un pedacito de Comedor Luna — y de nuestras tierras — a casa.
       </p>
 
-      <div class="mt-5 flex flex-wrap gap-2 justify-center">
+      <!-- tus chips acá tal cual -->
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
         <a href="#mates-bombillas" class="chip" data-animate="up" style="--reveal-delay: 200ms">Mates</a>
         <a href="#termos"         class="chip" data-animate="up" style="--reveal-delay: 280ms">Termos</a>
         <a href="#marroquineria"  class="chip" data-animate="up" style="--reveal-delay: 360ms">Marroquinería</a>
       </div>
-    </div>
 
     <div class="pointer-events-none absolute left-0 right-0 bottom-0 h-[110px]
                 bg-gradient-to-b from-transparent to-[var(--bg)]"></div>
+        <!-- ... -->
+      </div>
+    </div>
   </header>
+
 
   <main class="container-max">
     <!-- Nota / Info -->

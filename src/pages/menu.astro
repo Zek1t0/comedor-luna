@@ -12,90 +12,54 @@ import Footer from "../components/Footer.astro";
     <MenuSection title="Entradas" subtitle="Para comenzar la experiencia gastronómica">
       <MenuCard
         name="Empanadas"
-        price={2800}
-        description="Tradicionales empanadas al horno o fritas con masa casera de carne / jamón y queso / pollo / choclo."
-        tags="Especialidad, 6 unidades, 12 unidades" />
+        description="Tradicionales empanadas al horno o fritas con masa casera de carne / jamón y queso / pollo / choclo."  tags="Al horno, Frito"/>
 
       <MenuCard
         name="Tabla de Fiambres"
-        price={4200}
-        description="Selección de paleta, salame, queso y aceitunas."
-        tags="Para compartir, 2 personas" />
+        description="Selección de paleta, queso y aceitunas."  tags="Liviano, Ideal cena"/>
     </MenuSection>
 
     <hr class="border-line my-16" />
 
     <MenuSection title="Platos Principales" subtitle="Lo más pedido de nuestra cocina">
-      <MenuCard
-        name="Milanesas"
-        price={3000}
-        description="De ternera o pollo, napolitana opcional."
-        tags="Clásico" />
-
-      <MenuCard
-        name="Pastas Caseras"
-        price={2800}
-        description="Tallarines, ñoquis o ravioles. Salsa a elección: tuco, bolognesa, crema o manteca y salvia."
-        tags="Porción abundante" />
-
-      <MenuCard
-        name="Carne al Plato"
-        price={2500}
-        description="Vacio al horno, pollo, cerdo o chivito."
-        tags="Tradicional" />
-
-      <MenuCard
-        name="Sopa Puchero"
-        price={3200}
-        description="Caldo con carne y vegetales (papa, zanahoria, zapallo, etc...)" />
+      <MenuCard name="Carne al Horno" description="Vacio al horno, pollo, cerdo o chivito."  tags="Al horno, Contundente, Ideal almuerzo"/>
+      <MenuCard name="Matambre a la Pizza" description="Matambre de ternera cubierto con salsa, jamón y queso gratinado."  tags="Con salsa, Con queso, Contundente"/>
+      <MenuCard name="Sopa Puchero" description="Caldo con carne y vegetales (papa, zanahoria, zapallo, etc...)"  tags="Humeante, Suave"/>
+      <MenuCard name="Canelones con carne o pollo" description="Rellenos de choclo, o jamón y queso, o verdura, cubiertos con salsa de carne o pollo."  tags="Con salsa, Bien cremoso, Contundente"/>
+      <MenuCard name="Pastas Caseras" description="Tallarines, ñoquis o ravioles. Salsa a elección: salsa, crema o manteca."  tags="Con salsa, Con crema, Contundente"/>
+      <MenuCard name="Milanesas" description="De ternera o pollo, napolitana opcional."  tags="Ideal para cualquier momento"/>
     </MenuSection>
 
     <hr class="border-line my-16" />
 
     <MenuSection title="Acompañamientos" subtitle="Lo más pedido de nuestra cocina">
-      <MenuCard
-        name="Ensaladas"
-        price={3000}
-        description="A tu elección: cebolla, morrones, tomate, lechuga, zanahoria, remolacha, huevo duro, etc..."
-        tags="Clásico" />
-
-      <MenuCard
-        name="Puré de Papas"
-        price={2800}
-        description="Puré casero, hecho con papas naturales."
-        tags="Porción abundante" />
+      <MenuCard name="Panes Caseros" description="Variedad de panes caseros recién horneados. (Con o sin chicharrón)"  tags="Al horno"/>
+      <MenuCard name="Ensaladas" description="A tu elección: cebolla, morrones, tomate, lechuga, zanahoria, remolacha, huevo duro, etc..."  tags="Fresco, Liviano"/>
+      <MenuCard name="Puré de Papas" description="Puré casero, hecho con papas naturales."  tags="Bien cremoso, Suave"/>
+      <MenuCard name="Papas Fritas" description="Papas fritas caseras, crocantes y doradas."  tags="Frito, Crocante"/>
+      <MenuCard name="Verduras al Horno" description="Papas, zapallos, batatá al horno."  tags="Al horno, Liviano"/>
+      <MenuCard name="Tortillas de Papa o Acelga" description="Tortilla casera, hecha con papas y huevos o acelga."  tags="Frito, Contundente"/>
+      <MenuCard name="Arroz blanco o con queso" description="Arroz de selección doble carolina con o sin queso a elección."  tags="Con queso, Sin queso"/>
     </MenuSection>
 
     <hr class="border-line my-16" />
 
     <MenuSection title="Postres" subtitle="El final dulce perfecto">
-      <MenuCard
-        name="Flan Casero"
-        price={2800}
-        description="Podes pedirlo con dulce de leche, helado o crema."
-        tags="Casero" />
-
-      <MenuCard
-        name="Alfajores de Maicena"
-        price={3200}
-        description="Rellenos con dulce de leche repostero."
-        tags="Artesanal, 3 unidades" />
-
-      <MenuCard
-        name="Helado Artesanal"
-        price={3200}
-        description="Sabores: dulce de leche, chocolate, frutilla, tramontana, crema americana."
-        tags="Artesanal" />
+      <MenuCard name="Flan Casero" description="Podes pedirlo con dulce de leche, helado o crema."  tags="Postre clásico, Con dulce de leche, Con crema"/>
+      <MenuCard name="Budín de Pan" description="Hecho en casa, servido con dulce de leche o crema."  tags="Dulce intenso, Con dulce de leche, Con crema"/>
+      <MenuCard name="Mamón en Almíbar" description="Dulce tradicional de mamón cocido en almíbar."  tags="Postre clásico, Dulce intenso"/>
+      <MenuCard name="Chocotorta" description="Postre tradicional de chocotorta."  tags="Dulce intenso, Postre clásico"/>
+      <MenuCard name="Tiramisú" description="Clásico postre italiano con capas de bizcochos, café y crema de queso."  tags="Bien cremoso, Dulce intenso"/>
     </MenuSection>
 
     <hr class="border-line my-16" />
 
     <MenuSection title="Bebidas" subtitle="Para acompañar cada momento" columns={3}>
-      <MenuCard name="Vinos" description="Trapiche, Catena Zapata, Norton, Luigi Bosca, Rutini, Zuccardi, etc..." price="$1.800 / $8.500" tags="Copa, Botella"/>
-      <MenuCard name="Cervezas" description="Quilmes, Andes Origen, Patagonia, Imperial, Schneider, etc..." price="$1.500 / $6.800" tags="Botella"/>
-      <MenuCard name="Gaseosas" description="Coca-Cola, Pepsi, Sprite, Fanta, Manaos, Paso de los Toros, etc..." price={1200} tags="Botella" />
-      <MenuCard name="Aguas saborizadas" description="Levité, Cunnington Fresh, Ser, Aquarius, Glaciar, etc..." price={2200} tags="Botella" />
-      <MenuCard name="Aguas minerales / Sodas" description="Villavicencio, Eco de los Andes, Sierra de los Padres, Glaciar, etc..." price={1800} tags="Botella" />
+      <MenuCard name="Vinos" description="Trapiche, Catena Zapata, Norton, Luigi Bosca, Rutini, Zuccardi, etc..." tags="Copa, Botella" />
+      <MenuCard name="Cervezas" description="Quilmes, Andes Origen, Patagonia, Imperial, Schneider, etc..." tags="Botella" />
+      <MenuCard name="Gaseosas" description="Coca-Cola, Pepsi, Sprite, Fanta, Manaos, Paso de los Toros, etc..." tags="Botella" />
+      <MenuCard name="Aguas saborizadas" description="Levité, Cunnington Fresh, Ser, Aquarius, Glaciar, etc..." tags="Botella" />
+      <MenuCard name="Aguas minerales / Sodas" description="Villavicencio, Eco de los Andes, Sierra de los Padres, Glaciar, etc..." tags="Botella" />
     </MenuSection>
   </main>
   <Footer />
