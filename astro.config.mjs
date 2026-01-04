@@ -3,10 +3,9 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: "https://zekit0.github.io",
-  base: "/comedor-luna",
+  // site: "https://comedorluna.com.ar",
+  base: "/",
   trailingSlash: "always",
-
 
   integrations: [react()],
 
