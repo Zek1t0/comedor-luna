@@ -12,6 +12,12 @@ import { WhatsAppButton } from '../components/react/WhatsappButton.tsx';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32x32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${import.meta.env.BASE_URL}favicon-16x16.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
+
+
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -65,6 +71,46 @@ import { WhatsAppButton } from '../components/react/WhatsappButton.tsx';
           }
         });
         mo.observe(document.documentElement, { childList: true, subtree: true });
+      })();
+
+      (() => {
+        if (window.__tabTitleLoopInit) return;
+        window.__tabTitleLoopInit = true;
+
+        const baseTitle = document.title || "Comedor Luna";
+        const awayTitle = "Volve! Te extrañamos 😭💔";
+
+        let intervalId = null;
+        let showAway = true;
+
+        const startLoop = () => {
+          if (intervalId) return;
+
+          // Cambia inmediatamente al irse
+          document.title = awayTitle;
+          showAway = false;
+
+          intervalId = window.setInterval(() => {
+            document.title = showAway ? awayTitle : baseTitle;
+            showAway = !showAway;
+          }, 2000);
+        };
+
+        const stopLoop = () => {
+          if (!intervalId) return;
+          clearInterval(intervalId);
+          intervalId = null;
+          document.title = baseTitle;
+          showAway = true;
+        };
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) startLoop();
+          else stopLoop();
+        });
+
+        // Por si carga ya hidden (caso raro)
+        if (document.hidden) startLoop();
       })();
     </script>
   </body>

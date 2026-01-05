@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="404 – Comedor Luna">
+  <NavBar />
+
+  <main class="min-h-[80vh] grid place-items-center bg-cream">
+    <section class="container-max text-center py-20" data-animate="up">
+      <p class="text-sm uppercase tracking-widest text-muted">Error 404</p>
+
+      <h1 class="mt-3 font-serif text-4xl md:text-5xl text-text">
+        Esta página no existe
+      </h1>
+
+      <p class="mt-4 mx-auto max-w-[70ch] text-muted">
+        Capaz se escribió mal la dirección o el link quedó viejo. Volvé tranqui 🙃
+      </p>
+
+      <div class="flex flex-wrap gap-3 justify-center mt-8">
+        <a class="btn btn-primary shadow-lgx" href={`${base}`}>Volver al inicio</a>
+        <a class="btn btn-ghost" href={`${base}menu/`}>Ver el menú</a>
+        <a class="btn btn-ghost" href={`${base}historia/`}>Nuestra historia</a>
+      </div>
+
+      <div class="mt-10 text-6xl leading-none floating" aria-hidden="true">🍲</div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
