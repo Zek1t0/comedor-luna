@@ -4,8 +4,7 @@ Sitio web estático para **Comedor Luna**: una landing moderna y rápida, pensad
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c7190461-709e-41be-baa5-561e4d09cbeb" />
 
-> ✅ Actualmente publicado en GitHub Pages (temporal).  
-> 🌐 Próximamente: **dominio oficial** y deploy fuera de GitHub Pages.
+> 🌐 **Dominio oficial:** comedorluna.com.ar
 
 ---
 
@@ -27,14 +26,6 @@ Sitio web estático para **Comedor Luna**: una landing moderna y rápida, pensad
 - Astro para páginas/layout y componentes
 - React (islands) para componentes interactivos (WhatsApp button y carousel)
 - JavaScript inline en componentes .astro para micro-interacciones (ej: toggle del menú mobile)
-
----
-
-## 🚀 Demo (temporal)
-
-- GitHub Pages: `https://zek1t0.github.io/comedor-luna/`
-
-> Nota: este link es temporal. Cuando salga el dominio oficial, se actualizará acá.
 
 ---
 
