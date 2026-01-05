@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // site: "https://comedorluna.com.ar",
+  site: "https://comedorluna.com.ar",
   base: "/",
   trailingSlash: "always",
 
